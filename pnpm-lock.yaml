@@ -53,10 +53,7 @@ importers:
       '@deckjs/ui': link:../ui
 
   packages/ui:
-    specifiers:
-      lit-tailwindcss: ^0.1.0
-    devDependencies:
-      lit-tailwindcss: 0.1.0
+    specifiers: {}
 
 packages:
 
@@ -1795,12 +1792,6 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /lit-element/2.5.1:
-    resolution: {integrity: sha512-ogu7PiJTA33bEK0xGu1dmaX5vhcRjBXCFexPja0e7P7jqLhTpNKYRPmE+GmiCaRVAbiQKGkUgkh/i6+bh++dPQ==}
-    dependencies:
-      lit-html: 1.4.1
-    dev: true
-
   /lit-element/3.2.2:
     resolution: {integrity: sha512-6ZgxBR9KNroqKb6+htkyBwD90XGRiqKDHVrW/Eh0EZ+l+iC+u+v+w3/BA5NGi4nizAVHGYvQBHUDuSmLjPp7NQ==}
     dependencies:
@@ -1808,20 +1799,10 @@ packages:
       lit-html: 2.3.1
     dev: true
 
-  /lit-html/1.4.1:
-    resolution: {integrity: sha512-B9btcSgPYb1q4oSOb/PrOT6Z/H+r6xuNzfH4lFli/AWhYwdtrgQkQWBbIc6mdnf6E2IL3gDXdkkqNktpU0OZQA==}
-    dev: true
-
   /lit-html/2.3.1:
     resolution: {integrity: sha512-FyKH6LTW6aBdkfNhNSHyZTnLgJSTe5hMk7HFtc/+DcN1w74C215q8B+Cfxc2OuIEpBNcEKxgF64qL8as30FDHA==}
     dependencies:
       '@types/trusted-types': 2.0.2
-    dev: true
-
-  /lit-tailwindcss/0.1.0:
-    resolution: {integrity: sha512-28P9HftNrawBZV9TTtGbRx/bZf7OEo/L2MVQ53GWrfT64b5Itr+gIW2UU0w4ajs+1KB/kaJTopcdd3Qq9GQPiQ==}
-    dependencies:
-      lit-element: 2.5.1
     dev: true
 
   /lit/2.3.1:
