@@ -42,6 +42,7 @@ We would also like to give thanks to open-source projects that make deckjs possi
 - [Lit](https://lit.dev/) -- Simple. Fast. Web Components..
 - [quilljs](https://quilljs.com/) - powerful rich text editor.
 - [vite](https://vitejs.dev/) -- Next Generation Frontend Tooling.
+- [playwright](https://playwright.dev/) - enables reliable end-to-end testing for modern web apps.
 - Other [dependencies](https://github.com/tzhangchi/deckjs/network/dependencies)
 
 ## License
