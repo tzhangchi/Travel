@@ -1,9 +1,9 @@
-import { SimpleGreeting } from '@deckjs/ui';
+import { DCanvas } from '@deckjs/ui';
 import { noop } from './utils';
-
+import './index.css';
 window.onload = () => {
   // avoid being tree-shaked
-  noop(SimpleGreeting);
-  const pageBlock = document.createElement('simple-greeting');
-  document.body.appendChild(pageBlock);
+  noop(DCanvas);
+  const DCanvasInstance = document.createElement('d-canvas');
+  document.body.appendChild(DCanvasInstance);
 };
