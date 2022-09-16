@@ -12,12 +12,13 @@ export class DCanvas extends TwLitElement {
 
   // Render the UI as a function of component state
   render(): TemplateResult {
-    return html` <style>
+    return html`
+      <style>
         .root {
           width: 100vw;
           height: 100vh;
         }
-        .container {
+        .box {
           display: flex;
         }
         .toc {
@@ -45,15 +46,16 @@ export class DCanvas extends TwLitElement {
         }
       </style>
       <div class="root">
-        <div class="container">
+        <div class="box">
           <div class="toc">
             <div>Tables of Content</div>
           </div>
-          <div class="surfaces bg-blue-50">
+          <div class="surfaces bg-blue-400">
             <div class="surface text-3xl">Hello, ${this.name}!</div>
           </div>
         </div>
-      </div>`;
+      </div>
+    `;
   }
 }
 
