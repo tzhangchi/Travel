@@ -1,1 +1,2 @@
-export * from './simple-greeting';
+
+export * from './canvas';
