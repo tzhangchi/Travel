@@ -1,14 +1,17 @@
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
+import type { TemplateResult } from 'lit';
+
 import { customElement, property } from 'lit/decorators.js';
+import { TwLitElement } from './common/TwLitElement';
 
 @customElement('d-canvas')
-export class DCanvas extends LitElement {
+export class DCanvas extends TwLitElement {
   // Declare reactive properties
   @property()
   name?: string = 'd-canvas';
 
   // Render the UI as a function of component state
-  render() {
+  render(): TemplateResult {
     return html` <style>
         .root {
           width: 100vw;
@@ -29,7 +32,7 @@ export class DCanvas extends LitElement {
           text-align: center;
           flex-direction: column;
           align-items: center;
-          background-color: blue;
+          // background-color: #f3f4f6;
         }
         .surface {
           display: flex;
@@ -46,7 +49,7 @@ export class DCanvas extends LitElement {
           <div class="toc">
             <div>Tables of Content</div>
           </div>
-          <div class="surfaces">
+          <div class="surfaces bg-blue-50">
             <div class="surface text-3xl">Hello, ${this.name}!</div>
           </div>
         </div>

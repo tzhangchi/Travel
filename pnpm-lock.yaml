@@ -17,6 +17,7 @@ importers:
       eslint-plugin-react: ^7.31.8
       eslint-plugin-react-hooks: ^4.6.0
       lit: ^2.3.1
+      lit-element: ^3.2.2
       postcss: ^8.4.16
       prettier: ^2.7.1
       react: ^18.2.0
@@ -38,6 +39,7 @@ importers:
       eslint-plugin-react: 7.31.8_eslint@8.23.1
       eslint-plugin-react-hooks: 4.6.0_eslint@8.23.1
       lit: 2.3.1
+      lit-element: 3.2.2
       postcss: 8.4.16
       prettier: 2.7.1
       react: 18.2.0
