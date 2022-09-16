@@ -36,6 +36,7 @@ We would also like to give thanks to open-source projects that make deckjs possi
 
 - [yjs
   ](https://github.com/yjs/yjs) & [Yrs](https://github.com/y-crdt/y-crdt) -- Fundamental support of CRDTs for our implementation on state management and data sync.
+- [AFFiNE](https://github.com/toeverything/AFFiNE) - a next-gen knowledge base that brings planning, sorting and creating all together. Privacy first, open-source, customizable and ready to use
 - [tailwindcss](https://tailwindcss.com/) - A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup
 - [React](https://github.com/facebook/react) -- View layer support and web GUI framework.
 - [Lit](https://lit.dev/) -- Simple. Fast. Web Components..
