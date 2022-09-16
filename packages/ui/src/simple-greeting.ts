@@ -22,3 +22,9 @@ export class SimpleGreeting extends LitElement {
     </center>`;
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'simple-greeting': SimpleGreeting;
+  }
+}
