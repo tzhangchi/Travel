@@ -2,7 +2,7 @@
 
 Presentation like writing a doc, deckjs is written by react+ lit + yjs + vite + tailwind.css
 
-<img src="./assets/cover@2x.png">
+<img  src="./assets/cover@2x.png">
 
 Painted by [excaildraw](https://excalidraw.com/#json=lWFYoejI2OdbzNpZN4gt8,af-QtBVuT_I-h8LZ8dJvXQ)
 

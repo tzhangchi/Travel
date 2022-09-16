@@ -1,5 +1,5 @@
-import {LitElement, css, html} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import { LitElement, css, html } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 
 @customElement('simple-greeting')
 export class SimpleGreeting extends LitElement {
@@ -7,7 +7,7 @@ export class SimpleGreeting extends LitElement {
   static styles = css`
     :host {
       color: blue;
-      font-weight:bold;
+      font-weight: bold;
     }
   `;
 
@@ -18,7 +18,7 @@ export class SimpleGreeting extends LitElement {
   // Render the UI as a function of component state
   render() {
     return html`<center>
-    <p>Hello, ${this.name}!</p>
+      <p>Hello, ${this.name}!</p>
     </center>`;
   }
 }
