@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import type { TemplateResult } from 'lit';
 
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, eventOptions } from 'lit/decorators.js';
 import { TwLitElement } from './common/TwLitElement';
 
 @customElement('deckjs-canvas')
@@ -91,10 +91,17 @@ export class DeckjsCanvas extends TwLitElement {
                 </div>
               </div>
             </div>
+            <div class="text-center mt-4" @click=${this._onAddPage}>
+              <a class="btn btn-accent">Add Page</a>
+            </div>
           </div>
         </div>
       </div>
     `;
+  }
+  @eventOptions({ capture: true })
+  _onAddPage() {
+    console.log(222);
   }
 }
 
