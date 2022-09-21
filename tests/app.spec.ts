@@ -8,7 +8,7 @@ test('enter app', async ({ page }) => {
 
   //
   // create a locator Hello, deckjs!
-  const getStarted = page.locator('text=Hello, d-canvas!');
+  const getStarted = page.locator('text=Presentation Title!');
 
   await expect(getStarted).toBeVisible();
 });
@@ -20,7 +20,7 @@ test('enter app, click text', async ({ page }) => {
 
   //
   // create a locator Hello, deckjs!
-  const getStarted = page.locator('text=Hello, d-canvas!');
+  const getStarted = page.locator('text=Presentation Title!');
 
   await expect(getStarted).toBeVisible();
 
