@@ -8,7 +8,7 @@ import { TwLitElement } from './common/TwLitElement';
 export class DeckjsCanvas extends TwLitElement {
   // Declare reactive properties
   @property()
-  name?: string = 'deckjs-canvas';
+  name?: string = 'Presentation Title';
 
   // Render the UI as a function of component state
   render(): TemplateResult {
@@ -17,16 +17,13 @@ export class DeckjsCanvas extends TwLitElement {
         class="bg-primary flex-wrap items-center justify-center w-screen h-screen"
       >
         <div class="navbar bg-white">
-          <div class="flex-1">
-            <a class="btn btn-ghost normal-case"> Hello, ${this.name}!</a>
+          <div class="navbar-start">
+            <a class="btn btn-ghost normal-case">Deckjs</a>
           </div>
-          <div class="flex-none">
-            <div class="flex-none">
-              <ul class="menu menu-horizontal p-0">
-                <li class="mr-6"><a class="btn btn-primary">Share</a></li>
-                <li><a class="btn btn-secondary">Presentation</a></li>
-              </ul>
-            </div>
+          <div class="navbar-center">${this.name}!</div>
+          <div class="navbar-end">
+            <a class="btn btn-primary mr-4">Share</a>
+            <a class="btn btn-secondary">Presentation</a>
           </div>
         </div>
         <div class="flex flex-row ">
