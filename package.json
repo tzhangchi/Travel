@@ -31,6 +31,7 @@
     "@typescript-eslint/parser": "^5.36.2",
     "@vitejs/plugin-react": "^2.1.0",
     "autoprefixer": "^10.4.11",
+    "daisyui": "^2.30.0",
     "eslint": "^8.23.0",
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
