@@ -1,2 +1,2 @@
-declare var style: string;
+declare const style: string;
 export default style;
