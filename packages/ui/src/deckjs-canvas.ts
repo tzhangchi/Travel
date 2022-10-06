@@ -112,7 +112,26 @@ export class DeckjsCanvas extends TwLitElement {
           </div>
         </div>
       </div>`);
-      menuTemplates.push(html` <li><a>${i.title}</a></li>`);
+      menuTemplates.push(html` <li>
+        <a
+          >${i.title}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="{1.5}"
+            stroke="currentColor"
+            class="w-8 h-8"
+            
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 6v12m6-6H6"
+            />
+          </svg>
+        </a>
+      </li>`);
     }
     console.log(slidesTemplates);
     return html`
