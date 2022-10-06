@@ -7,17 +7,79 @@ import { TwLitElement } from './common/TwLitElement';
 interface Surface {
   title: string;
   id: string;
+  type: string | 'image' | 'article' | 'code';
 }
+
 const _uuid = (): string => Math.floor(Math.random() * 1000) + '';
 
-const _surfaceTitle = (_id?: string) => 'Surface ' + (_id || _uuid());
-const _newSurface = function (): Surface {
+const _randomTitle = () =>
+  [
+    'Chapter1',
+    'Chapter2',
+    'Chapter3',
+    'Chapter4',
+    'Chapter5',
+    'Chapter6',
+    'Chapter7',
+    'Chapter8',
+    'Chapter9',
+    'Chapter10',
+  ][Math.floor(Math.random() * 10)];
+const _surfaceTitle = (_id?: string) =>
+  'S-' + (_id || _uuid()) + ' ' + _randomTitle();
+const _newSurface = function (newType = 'article'): Surface {
   const id = _uuid();
   const title = _surfaceTitle(id);
+  const type =
+    newType || ['image', 'article', 'code'][Math.floor(Math.random() * 3)];
   return {
     id,
     title,
+    type,
   };
+};
+const _getSurfaceContent = (type: string) => {
+  if (type === 'article' || !type) {
+    return html`<div class="card lg:card-side bg-base-100 shadow-xl">
+      <figure>
+        <img src="https://placeimg.com/400/400/arch" alt="Album" />
+      </figure>
+      <div class="card-body">
+        <h2 class="card-title">New album is released!</h2>
+        <p>Click the button to listen on Spotiwhy app.</p>
+        <div class="card-actions justify-end">
+          <button class="btn btn-primary">Listen</button>
+        </div>
+      </div>
+    </div>`;
+  } else if (type == 'code') {
+    return html`<div class="mockup-code">
+      <pre data-prefix="$"><code>npm i daisyui</code></pre>
+      <pre data-prefix=">" class="text-warning"><code>installing...</code></pre>
+      <pre data-prefix=">" class="text-success"><code>Done!</code></pre>
+    </div>`;
+  } else if (type == 'image') {
+    return html`<div class="carousel w-full">
+        <div id="item1" class="carousel-item w-full">
+          <img src="https://placeimg.com/800/200/arch" class="w-full" />
+        </div>
+        <div id="item2" class="carousel-item w-full">
+          <img src="https://placeimg.com/800/200/arch" class="w-full" />
+        </div>
+        <div id="item3" class="carousel-item w-full">
+          <img src="https://placeimg.com/800/200/arch" class="w-full" />
+        </div>
+        <div id="item4" class="carousel-item w-full">
+          <img src="https://placeimg.com/800/200/arch" class="w-full" />
+        </div>
+      </div>
+      <div class="flex justify-center w-full py-2 gap-2">
+        <a href="#item1" class="btn btn-xs">1</a>
+        <a href="#item2" class="btn btn-xs">2</a>
+        <a href="#item3" class="btn btn-xs">3</a>
+        <a href="#item4" class="btn btn-xs">4</a>
+      </div>`;
+  }
 };
 @customElement('deckjs-canvas')
 export class DeckjsCanvas extends TwLitElement {
@@ -26,7 +88,11 @@ export class DeckjsCanvas extends TwLitElement {
   name?: string = 'Building decks and blocks , presentation like a doc';
 
   @property({ type: Array })
-  surfaces: Surface[] = new Array(5).fill(undefined).map(() => _newSurface());
+  surfaces: Surface[] = [
+    _newSurface('article'),
+    _newSurface('image'),
+    _newSurface('code'),
+  ];
 
   @property({ type: String, reflect: true })
   activeSurfaceId?: string;
@@ -41,22 +107,13 @@ export class DeckjsCanvas extends TwLitElement {
     const menuTemplates = [];
     for (let index = 0; index < this.surfaces.length; index++) {
       const i = this.surfaces[index];
-      surfacesTemplates.push(html` <div
+      surfacesTemplates.push(html`<div
         id="surface${i.id}"
         class="artboard artboard-horizontal bg-white rounded-box w-10/12 h-auto mt-10 m-auto "
       >
-      <div class="card lg:card-side bg-base-100 shadow-xl">
-      <figure><img src="https://placeimg.com/400/400/arch" alt="Album"/></figure>
-      <div class="card-body">
-        <h2 class="card-title">New album is released!</h2>
-        <p>Click the button to listen on Spotiwhy app.</p>
-        <div class="card-actions justify-end">
-          <button class="btn btn-primary">Listen</button>
-        </div>
-      </div>
-    </div>
-        </div>
+        ${_getSurfaceContent(i.type)}
       </div>`);
+
       menuTemplates.push(html` <li
         @click=${() => {
           this.activeSurfaceId = i.id;
