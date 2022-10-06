@@ -4,7 +4,7 @@ import { enterApp } from './utils';
 test('enter app', async ({ page }) => {
   await enterApp(page);
 
-  await expect(page).toHaveTitle(/deckjs app/);
+  await expect(page).toHaveTitle(/deckjs/);
 
   //
   // create a locator Hello, deckjs!
@@ -16,7 +16,7 @@ test('enter app', async ({ page }) => {
 test('enter app, click text', async ({ page }) => {
   await enterApp(page);
 
-  await expect(page).toHaveTitle(/deckjs app/);
+  await expect(page).toHaveTitle(/deckjs/);
 
   //
   // create a locator Hello, deckjs!
