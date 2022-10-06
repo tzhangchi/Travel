@@ -4,16 +4,16 @@ import type { TemplateResult } from 'lit';
 import { customElement, property, eventOptions } from 'lit/decorators.js';
 import { TwLitElement } from './common/TwLitElement';
 
-interface Slide {
+interface Surface {
   title: string;
   id: string;
 }
 const _uuid = (): string => Math.floor(Math.random() * 1000) + '';
 
-const _slideTitle = (_id?: string) => 'Slide ' + (_id || _uuid());
-const _newSlide = function (): Slide {
+const _surfaceTitle = (_id?: string) => 'Surface ' + (_id || _uuid());
+const _newSurface = function (): Surface {
   const id = _uuid();
-  const title = _slideTitle(id);
+  const title = _surfaceTitle(id);
   return {
     id,
     title,
@@ -26,23 +26,23 @@ export class DeckjsCanvas extends TwLitElement {
   name?: string = 'Building decks and blocks , presentation like a doc';
 
   @property({ type: Array })
-  slides: Slide[] = new Array(5).fill(undefined).map(() => _newSlide());
+  surfaces: Surface[] = new Array(5).fill(undefined).map(() => _newSurface());
 
   @property({ type: String, reflect: true })
-  activeSlideId?: string;
+  activeSurfaceId?: string;
 
   constructor() {
     super();
-    this.activeSlideId = this.slides[0].id;
+    this.activeSurfaceId = this.surfaces[0].id;
   }
   // Render the UI as a function of component state
   render(): TemplateResult {
-    const slidesTemplates = [];
+    const surfacesTemplates = [];
     const menuTemplates = [];
-    for (let index = 0; index < this.slides.length; index++) {
-      const i = this.slides[index];
-      slidesTemplates.push(html` <div
-        id="slide${i.id}"
+    for (let index = 0; index < this.surfaces.length; index++) {
+      const i = this.surfaces[index];
+      surfacesTemplates.push(html` <div
+        id="surface${i.id}"
         class="artboard artboard-horizontal bg-white rounded-box w-10/12 h-auto mt-10 m-auto "
       >
         <div class="bg-white py-6 sm:py-8 lg:py-12">
@@ -123,8 +123,8 @@ export class DeckjsCanvas extends TwLitElement {
       </div>`);
       menuTemplates.push(html` <li
         @click=${() => {
-          this.activeSlideId = i.id;
-          const eleId = `slide${i.id}`;
+          this.activeSurfaceId = i.id;
+          const eleId = `surface${i.id}`;
           console.log(eleId);
           let newTop = this.renderRoot
             .querySelector('#' + eleId)
@@ -137,7 +137,7 @@ export class DeckjsCanvas extends TwLitElement {
             newTop =
               -72 +
               (newTop || 0) +
-              (this.renderRoot.querySelector('#slideScrollContainer')
+              (this.renderRoot.querySelector('#surfaceScrollContainer')
                 ?.scrollTop || 0);
           }
 
@@ -146,10 +146,10 @@ export class DeckjsCanvas extends TwLitElement {
           // );
           // debugger;
           this.renderRoot
-            .querySelector('#slideScrollContainer')
+            .querySelector('#surfaceScrollContainer')
             ?.scrollTo({ top: newTop, behavior: 'smooth' });
         }}
-        class="${this.activeSlideId == i.id
+        class="${this.activeSurfaceId == i.id
           ? 'bg-secondary text-white te'
           : ''}"
       >
@@ -173,11 +173,11 @@ export class DeckjsCanvas extends TwLitElement {
         </a>
       </li>`);
     }
-    // console.log(slidesTemplates);
+    // console.log(surfacesTemplates);
     return html`
       <div
         class="bg-primary flex-wrap items-center justify-center w-screen h-screen overflow-auto"
-        id="slideScrollContainer"
+        id="surfaceScrollContainer"
       >
         <div class="navbar bg-white fixed z-50">
           <div class="navbar-start">
@@ -198,7 +198,7 @@ export class DeckjsCanvas extends TwLitElement {
             </ul>
           </div>
           <div class="basis-4/5 ml-72 text-center pt-4" style="margin-top:72px">
-            ${slidesTemplates}
+            ${surfacesTemplates}
             <a class="btn btn-accent" @click=${this._onAddPage}>Add Page</a>
           </div>
         </div>
@@ -207,9 +207,9 @@ export class DeckjsCanvas extends TwLitElement {
   }
   @eventOptions({ capture: true })
   _onAddPage(e: Event) {
-    this.slides = [...this.slides, _newSlide()];
+    this.surfaces = [...this.surfaces, _newSurface()];
 
-    console.log(this.slides);
+    console.log(this.surfaces);
     e.stopPropagation();
   }
 }
