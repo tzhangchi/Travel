@@ -34,7 +34,6 @@ export class DeckjsCanvas extends TwLitElement {
   constructor() {
     super();
     this.activeSlideId = this.slides[0].id;
-    console.log(this.activeSlideId);
   }
   // Render the UI as a function of component state
   render(): TemplateResult {
@@ -42,6 +41,7 @@ export class DeckjsCanvas extends TwLitElement {
     const menuTemplates = [];
     for (const i of this.slides) {
       slidesTemplates.push(html` <div
+        id="slide${i.id}"
         class="artboard artboard-horizontal bg-white rounded-box w-10/12 h-auto mt-10 m-auto "
       >
         <div class="bg-white py-6 sm:py-8 lg:py-12">
@@ -121,7 +121,18 @@ export class DeckjsCanvas extends TwLitElement {
         </div>
       </div>`);
       menuTemplates.push(html` <li
-        @click=${() => (this.activeSlideId = i.id)}
+        @click=${() => {
+          this.activeSlideId = i.id;
+          const eleId = `slide${this.activeSlideId}`;
+
+          const newTop = this.renderRoot
+            .querySelector('#' + eleId)
+            ?.getBoundingClientRect().top;
+
+          this.renderRoot
+            .querySelector('#slideScrollContainer')
+            ?.scrollTo({ top: newTop || 0, behavior: 'smooth' });
+        }}
         class="${this.activeSlideId == i.id ? 'bg-secondary text-white' : ''}"
       >
         <a
@@ -149,7 +160,7 @@ export class DeckjsCanvas extends TwLitElement {
       <div
         class="bg-primary flex-wrap items-center justify-center w-screen h-screen overflow-auto"
       >
-        <div class="navbar bg-white">
+        <div class="navbar bg-white fixed z-50">
           <div class="navbar-start">
             <a class="btn btn-ghost normal-case">Deckjs</a>
           </div>
@@ -160,16 +171,18 @@ export class DeckjsCanvas extends TwLitElement {
           </div>
         </div>
         <div class="flex flex-row ">
-          <div class="basis-1/5">
+          <div class="w-72 fixed" style="top:72px">
             <ul class="menu bg-base-100 w-auto p-2 mt-10 rounded-box">
               ${menuTemplates}
             </ul>
           </div>
-          <div class="basis-4/5">
-            <div class="text-center mt-4">
-              ${slidesTemplates}
-              <a class="btn btn-accent" @click=${this._onAddPage}>Add Page</a>
-            </div>
+          <div
+            class="basis-4/5 ml-72 text-center pt-4"
+            style="margin-top:72px"
+            id="slideScrollContainer"
+          >
+            ${slidesTemplates}
+            <a class="btn btn-accent" @click=${this._onAddPage}>Add Page</a>
           </div>
         </div>
       </div>
