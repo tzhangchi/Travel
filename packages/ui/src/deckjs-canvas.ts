@@ -3,7 +3,6 @@ import type { TemplateResult } from 'lit';
 
 import { customElement, property, eventOptions } from 'lit/decorators.js';
 import { TwLitElement } from './common/TwLitElement';
-import { debug } from 'console';
 
 interface Slide {
   title: string;
