@@ -116,13 +116,13 @@ export class DeckjsCanvas extends TwLitElement {
         <a
           >${i.title}
           <svg
+            @click=${this._onAddPage}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth="{1.5}"
             stroke="currentColor"
             class="w-8 h-8"
-            
           >
             <path
               strokeLinecap="round"
