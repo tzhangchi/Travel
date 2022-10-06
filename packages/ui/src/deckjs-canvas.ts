@@ -23,7 +23,7 @@ const _newSlide = function (): Slide {
 export class DeckjsCanvas extends TwLitElement {
   // Declare reactive properties
   @property()
-  name?: string = 'Presentation Title';
+  name?: string = 'Building decks and blocks , presentation like a doc';
 
   @property({ type: Array })
   slides: Slide[] = new Array(5).fill(undefined).map(() => _newSlide());
