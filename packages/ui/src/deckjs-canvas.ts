@@ -121,7 +121,7 @@ export class DeckjsCanvas extends TwLitElement {
         </div>
       </div>`);
       menuTemplates.push(html` <li
-        class="${this.activeSlideId == i.id ? 'active' : ''}"
+        class="${this.activeSlideId == i.id ? 'bg-secondary text-white' : ''}"
       >
         <a
           >${i.title}
@@ -143,7 +143,7 @@ export class DeckjsCanvas extends TwLitElement {
         </a>
       </li>`);
     }
-    console.log(slidesTemplates);
+    // console.log(slidesTemplates);
     return html`
       <div
         class="bg-primary flex-wrap items-center justify-center w-screen h-screen overflow-auto"
