@@ -3,6 +3,7 @@ import type { TemplateResult } from 'lit';
 
 import { customElement, property, eventOptions } from 'lit/decorators.js';
 import { TwLitElement } from './common/TwLitElement';
+import { debug } from 'console';
 
 interface Slide {
   title: string;
@@ -26,7 +27,7 @@ export class DeckjsCanvas extends TwLitElement {
   name?: string = 'Presentation Title';
 
   @property({ type: Array })
-  slides: Slide[] = [_newSlide()];
+  slides: Slide[] = new Array(5).fill(undefined).map(() => _newSlide());
 
   @property({ type: String, reflect: true })
   activeSlideId?: string;
@@ -39,7 +40,8 @@ export class DeckjsCanvas extends TwLitElement {
   render(): TemplateResult {
     const slidesTemplates = [];
     const menuTemplates = [];
-    for (const i of this.slides) {
+    for (let index = 0; index < this.slides.length; index++) {
+      const i = this.slides[index];
       slidesTemplates.push(html` <div
         id="slide${i.id}"
         class="artboard artboard-horizontal bg-white rounded-box w-10/12 h-auto mt-10 m-auto "
@@ -123,17 +125,34 @@ export class DeckjsCanvas extends TwLitElement {
       menuTemplates.push(html` <li
         @click=${() => {
           this.activeSlideId = i.id;
-          const eleId = `slide${this.activeSlideId}`;
-
-          const newTop = this.renderRoot
+          const eleId = `slide${i.id}`;
+          console.log(eleId);
+          let newTop = this.renderRoot
             .querySelector('#' + eleId)
-            ?.getBoundingClientRect().top;
+            ?.getBoundingClientRect().y;
+          // debugger;
 
+          if (index === 0) {
+            newTop = 0;
+          } else {
+            newTop =
+              -72 +
+              (newTop || 0) +
+              (this.renderRoot.querySelector('#slideScrollContainer')
+                ?.scrollTop || 0);
+          }
+
+          // console.log(
+          //   this.renderRoot.querySelector('#' + eleId)?.getBoundingClientRect()
+          // );
+          // debugger;
           this.renderRoot
             .querySelector('#slideScrollContainer')
-            ?.scrollTo({ top: newTop || 0, behavior: 'smooth' });
+            ?.scrollTo({ top: newTop, behavior: 'smooth' });
         }}
-        class="${this.activeSlideId == i.id ? 'bg-secondary text-white' : ''}"
+        class="${this.activeSlideId == i.id
+          ? 'bg-secondary text-white te'
+          : ''}"
       >
         <a
           >${i.title}
@@ -159,6 +178,7 @@ export class DeckjsCanvas extends TwLitElement {
     return html`
       <div
         class="bg-primary flex-wrap items-center justify-center w-screen h-screen overflow-auto"
+        id="slideScrollContainer"
       >
         <div class="navbar bg-white fixed z-50">
           <div class="navbar-start">
@@ -171,16 +191,14 @@ export class DeckjsCanvas extends TwLitElement {
           </div>
         </div>
         <div class="flex flex-row ">
-          <div class="w-72 fixed" style="top:72px">
-            <ul class="menu bg-base-100 w-auto p-2 mt-10 rounded-box">
+          <div class="w-72 fixed " style="top:72px">
+            <ul
+              class="menu bg-base-100 w-auto p-2 mt-10 rounded-box overflow-y-auto"
+            >
               ${menuTemplates}
             </ul>
           </div>
-          <div
-            class="basis-4/5 ml-72 text-center pt-4"
-            style="margin-top:72px"
-            id="slideScrollContainer"
-          >
+          <div class="basis-4/5 ml-72 text-center pt-4" style="margin-top:72px">
             ${slidesTemplates}
             <a class="btn btn-accent" @click=${this._onAddPage}>Add Page</a>
           </div>
@@ -189,10 +207,11 @@ export class DeckjsCanvas extends TwLitElement {
     `;
   }
   @eventOptions({ capture: true })
-  _onAddPage() {
+  _onAddPage(e: Event) {
     this.slides = [...this.slides, _newSlide()];
 
     console.log(this.slides);
+    e.stopPropagation();
   }
 }
 
