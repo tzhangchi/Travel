@@ -45,74 +45,16 @@ export class DeckjsCanvas extends TwLitElement {
         id="surface${i.id}"
         class="artboard artboard-horizontal bg-white rounded-box w-10/12 h-auto mt-10 m-auto "
       >
-        <div class="bg-white py-6 sm:py-8 lg:py-12">
-          <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
-            <div
-              class="flex justify-between items-center gap-8 mb-4 sm:mb-8 md:mb-12"
-            >
-              <div class="flex items-center gap-12">
-                <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold">
-                  ${i.title}
-                </h2>
-
-                <p class="max-w-screen-sm hidden md:block text-gray-500">
-                  This is a section of some simple filler text, also known as
-                  placeholder text. It shares some characteristics of a real
-                  written text.
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6 xl:gap-8"
-            >
-              <!-- image - start -->
-              <a
-                href="#"
-                class="group h-48 md:h-80 flex items-end bg-gray-100 overflow-hidden rounded-lg shadow-lg relative"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&q=75&fit=crop&w=600"
-                  loading="lazy"
-                  alt="Photo by Minh Pham"
-                  class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200"
-                />
-
-                <div
-                  class="bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 absolute inset-0 pointer-events-none"
-                ></div>
-
-                <span
-                  class="inline-block text-white text-sm md:text-lg relative ml-4 md:ml-5 mb-3"
-                  >VR</span
-                >
-              </a>
-              <!-- image - end -->
-
-              <!-- image - start -->
-              <a
-                href="#"
-                class="group h-48 md:h-80 md:col-span-2 flex items-end bg-gray-100 overflow-hidden rounded-lg shadow-lg relative"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1542759564-7ccbb6ac450a?auto=format&q=75&fit=crop&w=1000"
-                  loading="lazy"
-                  alt="Photo by Magicle"
-                  class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200"
-                />
-
-                <div
-                  class="bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 absolute inset-0 pointer-events-none"
-                ></div>
-
-                <span
-                  class="inline-block text-white text-sm md:text-lg relative ml-4 md:ml-5 mb-3"
-                  >Tech</span
-                >
-              </a>
-              <!-- image - end -->
-            </div>
-          </div>
+      <div class="card lg:card-side bg-base-100 shadow-xl">
+      <figure><img src="https://placeimg.com/400/400/arch" alt="Album"/></figure>
+      <div class="card-body">
+        <h2 class="card-title">New album is released!</h2>
+        <p>Click the button to listen on Spotiwhy app.</p>
+        <div class="card-actions justify-end">
+          <button class="btn btn-primary">Listen</button>
+        </div>
+      </div>
+    </div>
         </div>
       </div>`);
       menuTemplates.push(html` <li
@@ -144,7 +86,7 @@ export class DeckjsCanvas extends TwLitElement {
             ?.scrollTo({ top: newTop, behavior: 'smooth' });
         }}
         class="${this.activeSurfaceId == i.id
-          ? 'bg-secondary text-white te'
+          ? 'bg-primary text-white te'
           : ''}"
       >
         <a
@@ -170,7 +112,8 @@ export class DeckjsCanvas extends TwLitElement {
     // console.log(surfacesTemplates);
     return html`
       <div
-        class="bg-primary flex-wrap items-center justify-center w-screen h-screen overflow-auto"
+        class="bg-base-200 flex-wrap items-center justify-center w-screen h-screen overflow-auto bg-top"
+        style="background-image: radial-gradient(hsla(215 28% 17%/.2) .5px,hsla(0 0% 95%/1) .5px);background-size: 5px 5px;"
         id="surfaceScrollContainer"
       >
         <div class="navbar bg-white fixed z-50">
@@ -191,9 +134,11 @@ export class DeckjsCanvas extends TwLitElement {
               ${menuTemplates}
             </ul>
           </div>
-          <div class="basis-4/5 ml-72 text-center pt-4" style="margin-top:72px">
+          <div class="basis-4/5 ml-72  pt-4" style="margin-top:72px">
             ${surfacesTemplates}
-            <a class="btn btn-accent" @click=${this._onAddPage}>Add Page</a>
+            <div class="text-center mt-2">
+              <a class="btn btn-accent" @click=${this._onAddPage}>Add Page</a>
+            </div>
           </div>
         </div>
       </div>
