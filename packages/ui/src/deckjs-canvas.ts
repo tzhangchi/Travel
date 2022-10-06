@@ -121,6 +121,7 @@ export class DeckjsCanvas extends TwLitElement {
         </div>
       </div>`);
       menuTemplates.push(html` <li
+        @click=${() => (this.activeSlideId = i.id)}
         class="${this.activeSlideId == i.id ? 'bg-secondary text-white' : ''}"
       >
         <a
