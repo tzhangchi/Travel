@@ -100,52 +100,6 @@ export class DeckjsCanvas extends TwLitElement {
                 >
               </a>
               <!-- image - end -->
-
-              <!-- image - start -->
-              <a
-                href="#"
-                class="group h-48 md:h-80 md:col-span-2 flex items-end bg-gray-100 overflow-hidden rounded-lg shadow-lg relative"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1610465299996-30f240ac2b1c?auto=format&q=75&fit=crop&w=1000"
-                  loading="lazy"
-                  alt="Photo by Martin Sanchez"
-                  class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200"
-                />
-
-                <div
-                  class="bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 absolute inset-0 pointer-events-none"
-                ></div>
-
-                <span
-                  class="inline-block text-white text-sm md:text-lg relative ml-4 md:ml-5 mb-3"
-                  >Dev</span
-                >
-              </a>
-              <!-- image - end -->
-
-              <!-- image - start -->
-              <a
-                href="#"
-                class="group h-48 md:h-80 flex items-end bg-gray-100 overflow-hidden rounded-lg shadow-lg relative"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&q=75&fit=crop&w=600"
-                  loading="lazy"
-                  alt="Photo by Lorenzo Herrera"
-                  class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200"
-                />
-
-                <div
-                  class="bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 absolute inset-0 pointer-events-none"
-                ></div>
-
-                <span
-                  class="inline-block text-white text-sm md:text-lg relative ml-4 md:ml-5 mb-3"
-                  >Retro</span
-                >
-              </a>
-              <!-- image - end -->
             </div>
           </div>
         </div>
@@ -178,9 +132,9 @@ export class DeckjsCanvas extends TwLitElement {
             </ul>
           </div>
           <div class="basis-4/5">
-            <div class="text-center mt-4" @click=${this._onAddPage}>
+            <div class="text-center mt-4">
               ${slidesTemplates}
-              <a class="btn btn-accent">Add Page</a>
+              <a class="btn btn-accent" @click=${this._onAddPage}>Add Page</a>
             </div>
           </div>
         </div>
@@ -189,9 +143,12 @@ export class DeckjsCanvas extends TwLitElement {
   }
   @eventOptions({ capture: true })
   _onAddPage() {
-    this.slides.push({
-      title: `Slide ` + Math.floor(Math.random() * 1000),
-    });
+    this.slides = [
+      ...this.slides,
+      {
+        title: `Slide ` + Math.floor(Math.random() * 1000),
+      },
+    ];
 
     console.log(this.slides);
   }
