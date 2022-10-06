@@ -6,7 +6,19 @@ import { TwLitElement } from './common/TwLitElement';
 
 interface Slide {
   title: string;
+  id: string;
 }
+const _uuid = (): string => Math.floor(Math.random() * 1000) + '';
+
+const _slideTitle = (_id?: string) => 'Slide ' + (_id || _uuid());
+const _newSlide = function (): Slide {
+  const id = _uuid();
+  const title = _slideTitle(id);
+  return {
+    id,
+    title,
+  };
+};
 @customElement('deckjs-canvas')
 export class DeckjsCanvas extends TwLitElement {
   // Declare reactive properties
@@ -14,11 +26,7 @@ export class DeckjsCanvas extends TwLitElement {
   name?: string = 'Presentation Title';
 
   @property({ type: Array })
-  slides: Slide[] = [
-    {
-      title: 'Slide 1',
-    },
-  ];
+  slides: Slide[] = [_newSlide()];
 
   // Render the UI as a function of component state
   render(): TemplateResult {
@@ -104,11 +112,7 @@ export class DeckjsCanvas extends TwLitElement {
           </div>
         </div>
       </div>`);
-      menuTemplates.push(html` <li class="menu-title">
-          <span>${i.title}</span>
-        </li>
-        <li><a>Item 1</a></li>
-        <li><a>Item 2</a></li>`);
+      menuTemplates.push(html` <li><a>${i.title}</a></li>`);
     }
     console.log(slidesTemplates);
     return html`
@@ -143,12 +147,7 @@ export class DeckjsCanvas extends TwLitElement {
   }
   @eventOptions({ capture: true })
   _onAddPage() {
-    this.slides = [
-      ...this.slides,
-      {
-        title: `Slide ` + Math.floor(Math.random() * 1000),
-      },
-    ];
+    this.slides = [...this.slides, _newSlide()];
 
     console.log(this.slides);
   }
