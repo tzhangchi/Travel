@@ -28,6 +28,14 @@ export class DeckjsCanvas extends TwLitElement {
   @property({ type: Array })
   slides: Slide[] = [_newSlide()];
 
+  @property({ type: String, reflect: true })
+  activeSlideId?: string;
+
+  constructor() {
+    super();
+    this.activeSlideId = this.slides[0].id;
+    console.log(this.activeSlideId);
+  }
   // Render the UI as a function of component state
   render(): TemplateResult {
     const slidesTemplates = [];
@@ -112,7 +120,9 @@ export class DeckjsCanvas extends TwLitElement {
           </div>
         </div>
       </div>`);
-      menuTemplates.push(html` <li>
+      menuTemplates.push(html` <li
+        class="${this.activeSlideId == i.id ? 'active' : ''}"
+      >
         <a
           >${i.title}
           <svg
