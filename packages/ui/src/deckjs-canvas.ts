@@ -61,12 +61,6 @@ export class DeckjsCanvas extends TwLitElement {
                   written text.
                 </p>
               </div>
-
-              <a
-                href="#"
-                class="inline-block bg-white hover:bg-gray-100 active:bg-gray-200 focus-visible:ring ring-indigo-300 border text-gray-500 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-4 md:px-8 py-2 md:py-3"
-                >More</a
-              >
             </div>
 
             <div
