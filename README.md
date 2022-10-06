@@ -1,6 +1,6 @@
 # deckjs
 
-Presentation like writing a doc, deckjs is written by react+ lit + yjs + vite + tailwind.css
+Building decks and blocks , presentation like a doc, deckjs is written by react+ lit + yjs + vite + tailwind.css
 
 <img  src="./assets/cover@2x.png">
 
