@@ -226,7 +226,9 @@ export class DeckjsCanvas extends TwLitElement {
         <a
           >${i.title}
           <svg
-            @click=${this._onAddPage}
+            @click=${(e: Event) => {
+              this._onAddPage(e, index);
+            }}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -303,10 +305,10 @@ export class DeckjsCanvas extends TwLitElement {
   }
 
   @eventOptions({ capture: true })
-  _onAddPage(e: Event) {
-    this.surfaces = [...this.surfaces, _newSurface()];
-
-    console.log(this.surfaces);
+  _onAddPage(e: Event, index: number) {
+    // const array: Surface[] = this.surfaces;
+    this.surfaces.splice(index + 1, 0, _newSurface('article'));
+    this.surfaces = [...this.surfaces];
     e.stopPropagation();
   }
 }
