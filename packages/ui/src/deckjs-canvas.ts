@@ -307,9 +307,15 @@ export class DeckjsCanvas extends TwLitElement {
   @eventOptions({ capture: true })
   _onAddPage(e: Event, index: number) {
     // const array: Surface[] = this.surfaces;
-    this.surfaces.splice(index + 1, 0, _newSurface('article'));
+    const newSurface = _newSurface('article');
+    const newIndex = index + 1;
+    this.surfaces.splice(newIndex, 0, newSurface);
     this.surfaces = [...this.surfaces];
     e.stopPropagation();
+
+    setTimeout(() => {
+      this._onClickMenuItem(newSurface.id, newIndex);
+    });
   }
 }
 
