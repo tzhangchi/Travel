@@ -214,6 +214,9 @@ export class DeckjsCanvas extends TwLitElement {
         id="surface${i.id}"
         class="artboard artboard-horizontal bg-white rounded-box w-10/12 h-auto mt-10 m-auto "
       >
+        <div class="navbar bg-base-100">
+          <a class="btn btn-ghost normal-case text-xl">${i.title}</a>
+        </div>
         ${_getSurfaceContent(i.type)}
       </div>`);
 
