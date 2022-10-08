@@ -218,33 +218,7 @@ export class DeckjsCanvas extends TwLitElement {
       </div>`);
 
       menuTemplates.push(html` <li
-        @click=${() => {
-          this.activeSurfaceId = i.id;
-          const eleId = `surface${i.id}`;
-          console.log(eleId);
-          let newTop = this.renderRoot
-            .querySelector('#' + eleId)
-            ?.getBoundingClientRect().y;
-          // debugger;
-
-          if (index === 0) {
-            newTop = 0;
-          } else {
-            newTop =
-              -72 +
-              (newTop || 0) +
-              (this.renderRoot.querySelector('#surfaceScrollContainer')
-                ?.scrollTop || 0);
-          }
-
-          // console.log(
-          //   this.renderRoot.querySelector('#' + eleId)?.getBoundingClientRect()
-          // );
-          // debugger;
-          this.renderRoot
-            .querySelector('#surfaceScrollContainer')
-            ?.scrollTo({ top: newTop, behavior: 'smooth' });
-        }}
+        @click=${() => this._onClickMenuItem(i.id, index)}
         class="${this.activeSurfaceId == i.id
           ? 'bg-primary text-white te'
           : ''}"
@@ -304,6 +278,30 @@ export class DeckjsCanvas extends TwLitElement {
       </div>
     `;
   }
+  _onClickMenuItem(id: string, index: number) {
+    this.activeSurfaceId = id;
+    const eleId = `surface${id}`;
+    console.log(eleId);
+    let newTop = this.renderRoot
+      .querySelector('#' + eleId)
+      ?.getBoundingClientRect().y;
+    // debugger;
+
+    if (index === 0) {
+      newTop = 0;
+    } else {
+      newTop =
+        -72 +
+        (newTop || 0) +
+        (this.renderRoot.querySelector('#surfaceScrollContainer')?.scrollTop ||
+          0);
+    }
+
+    this.renderRoot
+      .querySelector('#surfaceScrollContainer')
+      ?.scrollTo({ top: newTop, behavior: 'smooth' });
+  }
+
   @eventOptions({ capture: true })
   _onAddPage(e: Event) {
     this.surfaces = [...this.surfaces, _newSurface()];
