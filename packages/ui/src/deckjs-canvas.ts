@@ -188,6 +188,9 @@ export class DeckjsCanvas extends TwLitElement {
   @property()
   name?: string = 'Building decks and blocks , presentation like a doc';
 
+  @property({ type: Boolean })
+  isPresentationMode?: boolean = false;
+
   @property({ type: Array })
   surfaces: Surface[] = [
     _newSurface('article'),
@@ -262,7 +265,11 @@ export class DeckjsCanvas extends TwLitElement {
           <div class="navbar-center">${this.name}!</div>
           <div class="navbar-end">
             <a class="btn btn-primary mr-4">Share</a>
-            <a class="btn btn-secondary">Presentation</a>
+            <a
+              class="btn btn-secondary"
+              @click=${() => (this.isPresentationMode = true)}
+              >Presentation</a
+            >
           </div>
         </div>
         <div class="flex flex-row ">
@@ -280,6 +287,15 @@ export class DeckjsCanvas extends TwLitElement {
             </div>
           </div>
         </div>
+      </div>
+      <div
+        class="${!this.isPresentationMode
+          ? 'hidden'
+          : 'block'} fixed h-screen w-screen z-50 bg-primary overflow-auto"
+        style="top:0px;"
+      >
+      
+        ${surfacesTemplates}
       </div>
     `;
   }
