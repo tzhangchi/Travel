@@ -186,7 +186,7 @@ const _getSurfaceContent = (type: string) => {
 export class DeckjsCanvas extends TwLitElement {
   // Declare reactive properties
   @property()
-  name?: string = 'Building decks and blocks , presentation like a doc';
+  title?: string = 'Building decks and blocks , presentation like a doc';
 
   @property({ type: Boolean })
   isPresentationMode?: boolean = false;
@@ -262,7 +262,7 @@ export class DeckjsCanvas extends TwLitElement {
           <div class="navbar-start">
             <a class="btn btn-ghost normal-case">Deckjs</a>
           </div>
-          <div class="navbar-center">${this.name}!</div>
+          <div class="navbar-center">${this.title}!</div>
           <div class="navbar-end">
             <a class="btn btn-primary mr-4">Share</a>
             <a
@@ -294,7 +294,14 @@ export class DeckjsCanvas extends TwLitElement {
           : 'block'} fixed h-screen w-screen z-50 bg-primary overflow-auto"
         style="top:0px;"
       >
-      
+        <div class="navbar">
+          <div class="flex-1">
+            <a class="text-white  text-xl">${this.title}</a>
+          </div>
+          <div class="flex-none">
+            <a class="btn float-right">Exit Presentation</a>
+          </div>
+        </div>
         ${surfacesTemplates}
       </div>
     `;
