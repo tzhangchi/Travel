@@ -225,9 +225,7 @@ export class DeckjsCanvas extends TwLitElement {
 
       menuTemplates.push(html` <li
         @click=${() => this._onClickMenuItem(i.id, index)}
-        class="${this.activeSurfaceId == i.id
-          ? 'bg-primary text-white te'
-          : ''}"
+        class="${this.activeSurfaceId == i.id ? 'bg-primary text-white ' : ''}"
       >
         <a
           >${i.title}
@@ -291,7 +289,7 @@ export class DeckjsCanvas extends TwLitElement {
       <div
         class="${!this.isPresentationMode
           ? 'hidden'
-          : 'block'} fixed h-screen w-screen z-50 bg-primary overflow-auto"
+          : 'block'} fixed h-screen w-screen z-50 bg-primary overflow-auto "
         style="top:0px;"
       >
         <div class="navbar">
@@ -306,7 +304,7 @@ export class DeckjsCanvas extends TwLitElement {
             >
           </div>
         </div>
-        ${surfacesTemplates}
+        <div class="pt-4 pb-20">${surfacesTemplates}</div>
       </div>
     `;
   }
