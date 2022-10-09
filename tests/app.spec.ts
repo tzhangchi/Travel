@@ -8,9 +8,9 @@ test('enter app', async ({ page }) => {
 
   //
   // create a locator Hello, deckjs!
-  const getStarted = page.locator(
-    'text=Building decks and blocks , presentation like a doc'
-  );
+  const getStarted = page
+    .locator('text=Building decks and blocks , presentation like a doc')
+    .nth(0);
 
   await expect(getStarted).toBeVisible();
 });
@@ -22,9 +22,9 @@ test('enter app, click text', async ({ page }) => {
 
   //
   // create a locator Hello, deckjs!
-  const getStarted = page.locator(
-    'text=Building decks and blocks , presentation like a doc'
-  );
+  const getStarted = page
+    .locator('text=Building decks and blocks , presentation like a doc')
+    .nth(0);
 
   await expect(getStarted).toBeVisible();
 
