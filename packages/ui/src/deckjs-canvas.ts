@@ -299,7 +299,11 @@ export class DeckjsCanvas extends TwLitElement {
             <a class="text-white  text-xl">${this.title}</a>
           </div>
           <div class="flex-none">
-            <a class="btn float-right">Exit Presentation</a>
+            <a
+              class="btn float-right"
+              @click=${() => (this.isPresentationMode = false)}
+              >Exit Presentation</a
+            >
           </div>
         </div>
         ${surfacesTemplates}
