@@ -4,6 +4,7 @@ import type { TemplateResult } from 'lit';
 import { customElement, property, eventOptions } from 'lit/decorators.js';
 import { TwLitElement } from './common/TwLitElement';
 
+import { store } from './store';
 interface Surface {
   title: string;
   id: string;
@@ -182,17 +183,19 @@ const _getSurfaceContent = (type: string) => {
     </div>`;
   }
 };
+
+const defaultStore = store.getStore();
 @customElement('deckjs-canvas')
 export class DeckjsCanvas extends TwLitElement {
   // Declare reactive properties
   @property()
-  title?: string = 'Building decks and blocks , presentation like a doc';
+  title?: string = defaultStore.title;
 
   @property({ type: Boolean })
   isPresentationMode?: boolean = false;
 
   @property({ type: Array })
-  surfaces: Surface[] = [
+  surfaces: Surface[] = defaultStore.surfaces || [
     _newSurface('article'),
     _newSurface('stat'),
     _newSurface('image'),
@@ -206,6 +209,10 @@ export class DeckjsCanvas extends TwLitElement {
   constructor() {
     super();
     this.activeSurfaceId = this.surfaces[0].id;
+    store.saveStore({
+      title: this.title,
+      surfaces: this.surfaces,
+    });
   }
   // Render the UI as a function of component state
   render(): TemplateResult {
@@ -344,6 +351,11 @@ export class DeckjsCanvas extends TwLitElement {
     const newIndex = index + 1;
     this.surfaces.splice(newIndex, 0, newSurface);
     this.surfaces = [...this.surfaces];
+
+    store.saveStore({
+      title: this.title,
+      surfaces: this.surfaces,
+    });
     e.stopPropagation();
 
     setTimeout(() => {

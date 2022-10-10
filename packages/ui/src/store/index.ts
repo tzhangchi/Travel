@@ -4,15 +4,22 @@ interface Surface {
   type: string | 'image' | 'article' | 'code' | 'counterdown' | 'stat';
 }
 interface State {
-  title: string;
+  title: string | undefined;
   surfaces: Surface[];
 }
+const localStorage = window.localStorage;
 const store = {
   saveStore: (data: State) => {
     localStorage.setItem('deckjs_store', JSON.stringify(data));
   },
-  getStore: () => {
-    return JSON.stringify(localStorage.getItem('deckjs_store'));
+  getStore: (): State => {
+    const originStore = localStorage.getItem('deckjs_store');
+    return originStore
+      ? JSON.parse(originStore)
+      : {
+          title: 'Building decks and blocks , presentation like a doc',
+          surfaces: null,
+        };
   },
 };
 
