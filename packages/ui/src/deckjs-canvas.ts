@@ -269,6 +269,7 @@ export class DeckjsCanvas extends TwLitElement {
           </div>
           <div class="navbar-center w-6/12">
             <input
+              id="title"
               class="input w-full text-center focus:border-none"
               value="${this.title}"
             />

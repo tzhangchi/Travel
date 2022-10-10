@@ -5,14 +5,12 @@ test('enter app', async ({ page }) => {
   await enterApp(page);
 
   await expect(page).toHaveTitle(/deckjs/);
-
-  //
-  // create a locator Hello, deckjs!
-  const getStarted = page
-    .locator('text=Building decks and blocks , presentation like a doc')
-    .nth(0);
-
-  await expect(getStarted).toBeVisible();
+  // https://playwright.dev/docs/api/class-locator
+  const title = page.locator('#title');
+  const inputValue = await title.inputValue();
+  await expect(inputValue).toEqual(
+    'Building decks and blocks , presentation like a doc'
+  );
 });
 
 test('enter app, click text', async ({ page }) => {
@@ -20,13 +18,9 @@ test('enter app, click text', async ({ page }) => {
 
   await expect(page).toHaveTitle(/deckjs/);
 
-  //
-  // create a locator Hello, deckjs!
-  const getStarted = page
-    .locator('text=Building decks and blocks , presentation like a doc')
-    .nth(0);
+  const title = page.locator('#title');
 
-  await expect(getStarted).toBeVisible();
+  await expect(title).toBeVisible();
 
-  await getStarted.click();
+  await title.click();
 });
