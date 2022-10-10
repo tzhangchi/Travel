@@ -260,7 +260,12 @@ export class DeckjsCanvas extends TwLitElement {
           <div class="navbar-start">
             <a class="btn btn-ghost normal-case">Deckjs</a>
           </div>
-          <div class="navbar-center">${this.title}!</div>
+          <div class="navbar-center w-6/12">
+            <input
+              class="input w-full text-center focus:border-none"
+              value="${this.title}"
+            />
+          </div>
           <div class="navbar-end">
             <a class="btn btn-primary mr-4">Share</a>
             <a
