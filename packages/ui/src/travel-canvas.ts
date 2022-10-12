@@ -293,6 +293,9 @@ export class TravelCanvas extends TwLitElement {
             />
           </div>
           <div class="navbar-end">
+            <a class="btn btn-ghost mr-4" @click=${this._onNewTravel}
+              >New Travel</a
+            >
             <a class="btn btn-primary mr-4">Share</a>
             <a
               class="btn btn-secondary"
@@ -361,6 +364,22 @@ export class TravelCanvas extends TwLitElement {
     this.renderRoot
       .querySelector('#surfaceScrollContainer')
       ?.scrollTo({ top: newTop, behavior: 'smooth' });
+  }
+
+  _onNewTravel() {
+    this.surfaces = [
+      _newSurface('article'),
+      _newSurface('stat'),
+      _newSurface('embed'),
+      _newSurface('image'),
+      _newSurface('counterdown'),
+      _newSurface('code'),
+    ];
+    this.activeSurfaceId = this.surfaces[0].id;
+    store.saveStore({
+      title: this.title,
+      surfaces: this.surfaces,
+    });
   }
 
   @eventOptions({ capture: true })
