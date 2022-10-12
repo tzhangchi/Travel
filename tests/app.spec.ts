@@ -9,7 +9,7 @@ test('enter app', async ({ page }) => {
   const title = page.locator('#title');
   const inputValue = await title.inputValue();
   await expect(inputValue).toEqual(
-    'Building decks and blocks , presentation like a doc'
+    'Building travels and blocks , presentation like a doc'
   );
 });
 

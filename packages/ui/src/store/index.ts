@@ -17,7 +17,7 @@ const store = {
     return originStore
       ? JSON.parse(originStore)
       : {
-          title: 'Building decks and blocks , presentation like a doc',
+          title: 'Building travels and blocks , presentation like a doc',
           surfaces: null,
         };
   },

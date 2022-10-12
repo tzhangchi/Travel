@@ -1,6 +1,6 @@
 # Travel
 
-Building decks and blocks , presentation like a doc, travel is written by react+ lit + yjs + vite + tailwind.css
+Building travels and blocks , presentation like a doc, travel is written by react+ lit + yjs + vite + tailwind.css
 
 <img  src="./assets/cover@2x.png">
 
