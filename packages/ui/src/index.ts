@@ -1,2 +1,2 @@
 
-export * from './deckjs-canvas';
+export * from './travel-canvas';

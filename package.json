@@ -1,10 +1,10 @@
 {
-  "name": "deckjs",
+  "name": "travel",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm --filter @deckjs/app dev",
+    "dev": "pnpm --filter @travel/app dev",
     "lint": "eslint ./ --max-warnings=0",
     "test": "playwright test",
     "test:headed": "playwright test --headed",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tzhangchi/deckjs.git"
+    "url": "git+https://github.com/tzhangchi/travel.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tzhangchi/deckjs/issues"
+    "url": "https://github.com/tzhangchi/travel/issues"
   },
-  "homepage": "https://github.com/tzhangchi/deckjs#readme",
+  "homepage": "https://github.com/tzhangchi/travel#readme",
   "devDependencies": {
     "@lit-labs/react": "^1.0.8",
     "@playwright/test": "^1.25.2",

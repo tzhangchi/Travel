@@ -10,10 +10,10 @@ interface State {
 const localStorage = window.localStorage;
 const store = {
   saveStore: (data: State) => {
-    localStorage.setItem('deckjs_store', JSON.stringify(data));
+    localStorage.setItem('travel_store', JSON.stringify(data));
   },
   getStore: (): State => {
-    const originStore = localStorage.getItem('deckjs_store');
+    const originStore = localStorage.getItem('travel_store');
     return originStore
       ? JSON.parse(originStore)
       : {

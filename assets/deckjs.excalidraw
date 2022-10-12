@@ -56,12 +56,12 @@
       "locked": false,
       "fontSize": 20,
       "fontFamily": 1,
-      "text": "Deckjs",
+      "text": "Travel",
       "baseline": 18,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "Deckjs"
+      "originalText": "Travel"
     },
     {
       "type": "rectangle",

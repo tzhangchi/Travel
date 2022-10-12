@@ -1,5 +1,5 @@
 {
-  "name": "@deckjs/app",
+  "name": "@travel/app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@deckjs/ui": "workspace:*"
+    "@travel/ui": "workspace:*"
   },
   "license": "Apache-2.0"
 }

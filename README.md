@@ -1,6 +1,6 @@
-# deckjs
+# Travel
 
-Building decks and blocks , presentation like a doc, deckjs is written by react+ lit + yjs + vite + tailwind.css
+Building decks and blocks , presentation like a doc, travel is written by react+ lit + yjs + vite + tailwind.css
 
 <img  src="./assets/cover@2x.png">
 
@@ -32,7 +32,7 @@ In headed mode, `await page.pause()` can be used in test cases to suspend the te
 
 # Useful Links
 
-We would also like to give thanks to open-source projects that make deckjs possible:
+We would also like to give thanks to open-source projects that make Travel possible:
 
 - [yjs
   ](https://github.com/yjs/yjs) & [Yrs](https://github.com/y-crdt/y-crdt) -- Fundamental support of CRDTs for our implementation on state management and data sync.
@@ -46,7 +46,7 @@ We would also like to give thanks to open-source projects that make deckjs possi
 - [vite](https://vitejs.dev/) -- Next Generation Frontend Tooling.
 - [playwright](https://playwright.dev/) - enables reliable end-to-end testing for modern web apps.
 - [icons](https://heroicons.com/) - use heroicons
-- Other [dependencies](https://github.com/tzhangchi/deckjs/network/dependencies)
+- Other [dependencies](https://github.com/tzhangchi/Travel/network/dependencies)
 
 ## License
 

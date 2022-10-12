@@ -50,9 +50,9 @@ importers:
 
   packages/app:
     specifiers:
-      '@deckjs/ui': workspace:*
+      '@travel/ui': workspace:*
     dependencies:
-      '@deckjs/ui': link:../ui
+      '@travel/ui': link:../ui
 
   packages/ui:
     specifiers: {}

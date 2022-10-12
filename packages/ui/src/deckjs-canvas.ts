@@ -185,8 +185,8 @@ const _getSurfaceContent = (type: string) => {
 };
 
 const defaultStore = store.getStore();
-@customElement('deckjs-canvas')
-export class DeckjsCanvas extends TwLitElement {
+@customElement('travel-canvas')
+export class TravelCanvas extends TwLitElement {
   // Declare reactive properties
   @property()
   title?: string = defaultStore.title;
@@ -265,7 +265,7 @@ export class DeckjsCanvas extends TwLitElement {
       >
         <div class="navbar bg-white fixed z-50">
           <div class="navbar-start">
-            <a class="btn btn-ghost normal-case">Deckjs</a>
+            <a class="btn btn-ghost normal-case">Travel</a>
           </div>
           <div class="navbar-center w-6/12">
             <input
@@ -367,6 +367,6 @@ export class DeckjsCanvas extends TwLitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'deckjs-canvas': DeckjsCanvas;
+    'travel-canvas': TravelCanvas;
   }
 }

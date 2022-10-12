@@ -4,7 +4,7 @@ import { enterApp } from './utils';
 test('enter app', async ({ page }) => {
   await enterApp(page);
 
-  await expect(page).toHaveTitle(/deckjs/);
+  await expect(page).toHaveTitle(/travel/);
   // https://playwright.dev/docs/api/class-locator
   const title = page.locator('#title');
   const inputValue = await title.inputValue();
@@ -16,7 +16,7 @@ test('enter app', async ({ page }) => {
 test('enter app, click text', async ({ page }) => {
   await enterApp(page);
 
-  await expect(page).toHaveTitle(/deckjs/);
+  await expect(page).toHaveTitle(/travel/);
 
   const title = page.locator('#title');
 
