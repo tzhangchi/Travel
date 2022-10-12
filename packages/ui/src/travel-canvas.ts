@@ -8,7 +8,14 @@ import { store } from './store';
 interface Surface {
   title: string;
   id: string;
-  type: string | 'image' | 'article' | 'code' | 'counterdown' | 'stat';
+  type:
+    | string
+    | 'image'
+    | 'article'
+    | 'code'
+    | 'counterdown'
+    | 'stat'
+    | 'embed';
 }
 
 const _uuid = (): string => Math.floor(Math.random() * 1000) + '';
@@ -29,7 +36,7 @@ const _randomTitle = () =>
 const _surfaceTitle = (_id?: string) =>
   'S-' + (_id || _uuid()) + ' ' + _randomTitle();
 const _newSurface = function (
-  newType = ['image', 'article', 'code', 'counterdown', 'stat'][
+  newType = ['image', 'article', 'code', 'counterdown', 'stat', 'embed'][
     Math.floor(Math.random() * 5)
   ]
 ): Surface {
@@ -181,6 +188,16 @@ const _getSurfaceContent = (type: string) => {
         </div>
       </div>
     </div>`;
+  } else if (type === 'embed') {
+    return html`<div class="embed">
+      <iframe
+        src="http://affine.pro/"
+        class="w-full h-96"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>`;
   }
 };
 
@@ -198,6 +215,7 @@ export class TravelCanvas extends TwLitElement {
   surfaces: Surface[] = defaultStore.surfaces || [
     _newSurface('article'),
     _newSurface('stat'),
+    _newSurface('embed'),
     _newSurface('image'),
     _newSurface('counterdown'),
     _newSurface('code'),
