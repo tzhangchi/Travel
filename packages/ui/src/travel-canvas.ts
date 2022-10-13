@@ -284,26 +284,24 @@ export class TravelCanvas extends TwLitElement {
         <div class="navbar bg-white fixed z-50">
           <div class="navbar-start">
             <a class="btn btn-ghost normal-case">Travel</a>
+            <a class="btn  btn-sm" @click=${this._onNewTravel}>New Travel</a>
           </div>
           <div class="navbar-center w-6/12">
+            <div class="btn-group">
+              <button class="btn btn-active btn-sm">Pager</button>
+              <button class="btn btn-sm">Travel</button>
+              <button class="btn btn-sm">Edgeless</button>
+            </div>
             <input
               id="title"
               class="input w-full text-center focus:border-none"
               value="${this.title}"
             />
-            <div class="btn-group">
-              <button class="btn btn-active">Pager</button>
-              <button class="btn">Travel</button>
-              <button class="btn">Edgeless</button>
-            </div>
           </div>
           <div class="navbar-end">
-            <a class="btn btn-ghost mr-4" @click=${this._onNewTravel}
-              >New Travel</a
-            >
-            <a class="btn btn-primary mr-4">Share</a>
+            <a class="btn btn-primary mr-2 btn-sm">Share</a>
             <a
-              class="btn btn-secondary"
+              class="btn btn-secondary btn-sm"
               @click=${() => (this.isPresentationMode = true)}
               >Presentation</a
             >
