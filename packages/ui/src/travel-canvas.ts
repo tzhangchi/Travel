@@ -291,6 +291,11 @@ export class TravelCanvas extends TwLitElement {
               class="input w-full text-center focus:border-none"
               value="${this.title}"
             />
+            <div class="btn-group">
+              <button class="btn btn-active">Pager</button>
+              <button class="btn">Travel</button>
+              <button class="btn">Edgeless</button>
+            </div>
           </div>
           <div class="navbar-end">
             <a class="btn btn-ghost mr-4" @click=${this._onNewTravel}
