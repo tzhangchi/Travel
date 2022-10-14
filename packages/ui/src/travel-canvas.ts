@@ -379,17 +379,18 @@ export class TravelCanvas extends TwLitElement {
           : 'block'} fixed h-screen w-screen z-50 bg-primary overflow-auto "
         style="top:0px;"
       >
-        <div class="grid grid-cols-6 gap-4">
-          <div class="col-start-2 col-span-4 ...">01</div>
-          <div class="col-start-1 col-end-3 ...">02</div>
-          <div class="col-end-7 col-span-2 ...">03</div>
-          <div class="col-start-1 col-end-7 ...">04</div>
-        </div>
-        <div class="navbar">
-          <a class="btn ml-4" @click=${() => (this.isPresentationMode = false)}
-            >Exit Presentation</a
-          >
-          <a class="text-white text-xl">${this.title}</a>
+        <div class="flex flex-row h-16 p-1">
+          <div class="basis-1/4 flex">
+            <a
+              class="btn ml-4 m-auto"
+              @click=${() => (this.isPresentationMode = false)}
+              >Exit Presentation</a
+            >
+          </div>
+          <div class="basis-1/2 flex">
+            <div class="text-white text-xl m-auto">${this.title}</div>
+          </div>
+          <div class="basis-1/4"></div>
         </div>
         <div class="pt-4 pb-20">${surfacesTemplates}</div>
       </div>
