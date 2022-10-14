@@ -206,7 +206,10 @@ const defaultStore = store.getStore();
 export class TravelCanvas extends TwLitElement {
   // Declare reactive properties
   @property()
-  title?: string = defaultStore.title;
+  travelTitle?: string = defaultStore.travelTitle;
+
+  @property({ type: String })
+  scene: 'Pager' | undefined;
 
   @property({ type: Boolean })
   isFullscreenMode?: boolean = false;
@@ -228,7 +231,7 @@ export class TravelCanvas extends TwLitElement {
     super();
     this.activeSurfaceId = this.surfaces[0].id;
     store.saveStore({
-      title: this.title,
+      travelTitle: this.travelTitle,
       surfaces: this.surfaces,
     });
   }
@@ -287,14 +290,32 @@ export class TravelCanvas extends TwLitElement {
           </div>
           <div class="navbar-center w-6/12">
             <div class="btn-group">
-              <button class="btn btn-active btn-sm">Pager</button>
-              <button class="btn btn-sm">Travel</button>
-              <button class="btn btn-sm">Edgeless</button>
+              <button
+                class="${this.scene === 'Pager'
+                  ? 'btn-active'
+                  : ''} btn  btn-sm"
+              >
+                Pager
+              </button>
+              <button
+                class="${this.scene === 'Pager'
+                  ? 'btn-active'
+                  : ''} btn  btn-sm"
+              >
+                Travel
+              </button>
+              <button
+                class="${this.scene === 'Pager'
+                  ? 'btn-active'
+                  : ''} btn  btn-sm"
+              >
+                Edgeless
+              </button>
             </div>
             <input
               id="title"
               class="input w-full text-center focus:border-none"
-              value="${this.title}"
+              value="${this.travelTitle}"
             />
           </div>
           <div class="navbar-end">
@@ -388,7 +409,7 @@ export class TravelCanvas extends TwLitElement {
             >
           </div>
           <div class="basis-1/2 flex">
-            <div class="text-white text-xl m-auto">${this.title}</div>
+            <div class="text-white text-xl m-auto">${this.travelTitle}</div>
           </div>
           <div class="basis-1/4"></div>
         </div>
@@ -431,7 +452,7 @@ export class TravelCanvas extends TwLitElement {
     ];
     this.activeSurfaceId = this.surfaces[0].id;
     store.saveStore({
-      title: this.title,
+      travelTitle: this.travelTitle,
       surfaces: this.surfaces,
     });
   }
@@ -445,7 +466,7 @@ export class TravelCanvas extends TwLitElement {
     this.surfaces = [...this.surfaces];
 
     store.saveStore({
-      title: this.title,
+      travelTitle: this.travelTitle,
       surfaces: this.surfaces,
     });
     e.stopPropagation();

@@ -4,7 +4,7 @@ interface Surface {
   type: string | 'image' | 'article' | 'code' | 'counterdown' | 'stat';
 }
 interface State {
-  title: string | undefined;
+  travelTitle: string | undefined;
   surfaces: Surface[];
 }
 const localStorage = window.localStorage;
@@ -17,7 +17,7 @@ const store = {
     return originStore
       ? JSON.parse(originStore)
       : {
-          title: 'Building travels and blocks , presentation like a doc',
+          travelTitle: 'Building travels and blocks , presentation like a doc',
           surfaces: null,
         };
   },
