@@ -298,7 +298,11 @@ export class TravelCanvas extends TwLitElement {
             />
           </div>
           <div class="navbar-end">
-            <a class="mr-4 cursor-pointer" @click=${this._onNewTravel}>
+            <a
+              class="mr-4 cursor-pointer tooltip tooltip-bottom"
+              data-tip="New a travel"
+              @click=${this._onNewTravel}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -314,7 +318,9 @@ export class TravelCanvas extends TwLitElement {
                 />
               </svg>
             </a>
-            <a class="mr-4 cursor-pointer"
+            <a
+              class="mr-4 cursor-pointer tooltip tooltip-bottom"
+              data-tip="Share to Twitter"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -331,7 +337,8 @@ export class TravelCanvas extends TwLitElement {
               </svg>
             </a>
             <a
-              class="mr-4 cursor-pointer5"
+              class="mr-4 cursor-pointer tooltip tooltip-bottom"
+              data-tip="Enter Presentation Mode"
               @click=${() => (this.isPresentationMode = true)}
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
