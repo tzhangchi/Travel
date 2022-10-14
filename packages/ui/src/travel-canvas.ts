@@ -209,7 +209,7 @@ export class TravelCanvas extends TwLitElement {
   title?: string = defaultStore.title;
 
   @property({ type: Boolean })
-  isPresentationMode?: boolean = false;
+  isFullscreenMode?: boolean = false;
 
   @property({ type: Array })
   surfaces: Surface[] = defaultStore.surfaces || [
@@ -337,9 +337,9 @@ export class TravelCanvas extends TwLitElement {
               </svg>
             </a>
             <a
-              class="mr-4 cursor-pointer tooltip tooltip-bottom"
-              data-tip="Enter Presentation Mode"
-              @click=${() => (this.isPresentationMode = true)}
+              class="mr-12 cursor-pointer tooltip tooltip-bottom"
+              data-tip="Enter Fullscreen"
+              @click=${() => (this.isFullscreenMode = true)}
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -374,7 +374,7 @@ export class TravelCanvas extends TwLitElement {
         </div>
       </div>
       <div
-        class="${!this.isPresentationMode
+        class="${!this.isFullscreenMode
           ? 'hidden'
           : 'block'} fixed h-screen w-screen z-50 bg-primary overflow-auto "
         style="top:0px;"
@@ -383,8 +383,8 @@ export class TravelCanvas extends TwLitElement {
           <div class="basis-1/4 flex">
             <a
               class="btn ml-4 m-auto"
-              @click=${() => (this.isPresentationMode = false)}
-              >Exit Presentation</a
+              @click=${() => (this.isFullscreenMode = false)}
+              >Exit FullScreen</a
             >
           </div>
           <div class="basis-1/2 flex">
