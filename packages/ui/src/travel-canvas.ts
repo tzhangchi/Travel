@@ -202,6 +202,7 @@ const _getSurfaceContent = (type: string) => {
 };
 
 const defaultStore = store.getStore();
+type SceneKeys = 'Pager' | 'Travel' | 'Edgeless' | undefined;
 @customElement('travel-canvas')
 export class TravelCanvas extends TwLitElement {
   // Declare reactive properties
@@ -209,7 +210,7 @@ export class TravelCanvas extends TwLitElement {
   travelTitle?: string = defaultStore.travelTitle;
 
   @property({ type: String })
-  scene: 'Pager' | undefined;
+  scene?: SceneKeys;
 
   @property({ type: Boolean })
   isFullscreenMode?: boolean = false;
@@ -230,6 +231,7 @@ export class TravelCanvas extends TwLitElement {
   constructor() {
     super();
     this.activeSurfaceId = this.surfaces[0].id;
+    this.scene = 'Pager';
     store.saveStore({
       travelTitle: this.travelTitle,
       surfaces: this.surfaces,
@@ -294,20 +296,29 @@ export class TravelCanvas extends TwLitElement {
                 class="${this.scene === 'Pager'
                   ? 'btn-active'
                   : ''} btn  btn-sm"
+                @click=${() => {
+                  this._onSwitchScene('Pager');
+                }}
               >
                 Pager
               </button>
               <button
-                class="${this.scene === 'Pager'
+                class="${this.scene === 'Travel'
                   ? 'btn-active'
                   : ''} btn  btn-sm"
+                @click=${() => {
+                  this._onSwitchScene('Travel');
+                }}
               >
                 Travel
               </button>
               <button
-                class="${this.scene === 'Pager'
+                class="${this.scene === 'Edgeless'
                   ? 'btn-active'
                   : ''} btn  btn-sm"
+                @click=${() => {
+                  this._onSwitchScene('Edgeless');
+                }}
               >
                 Edgeless
               </button>
@@ -440,7 +451,10 @@ export class TravelCanvas extends TwLitElement {
       .querySelector('#surfaceScrollContainer')
       ?.scrollTo({ top: newTop, behavior: 'smooth' });
   }
-
+  _onSwitchScene(newScene: SceneKeys) {
+    this.scene = newScene;
+    console.log(this.scene);
+  }
   _onNewTravel() {
     this.surfaces = [
       _newSurface('article'),
