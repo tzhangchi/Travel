@@ -390,19 +390,23 @@ export class TravelCanvas extends TwLitElement {
           </div>
         </div>
         <div class="flex flex-row ">
-          <div class="w-72 fixed " style="top:72px">
-            <ul
-              class="menu bg-base-100 w-auto p-2 mt-10 rounded-box overflow-y-auto"
-            >
-              ${menuTemplates}
-            </ul>
-          </div>
-          <div class="basis-4/5 ml-72  pt-4" style="margin-top:72px">
-            ${surfacesTemplates}
-            <div class="text-center mt-2">
-              <a class="btn btn-accent" @click=${this._onAddPage}>Add Page</a>
+          <div class="${this.scene === 'Pager' ? 'block' : 'hidden'} ">
+            <div class="w-72 fixed " style="top:72px">
+              <ul
+                class="menu bg-base-100 w-auto p-2 mt-10 rounded-box overflow-y-auto"
+              >
+                ${menuTemplates}
+              </ul>
+            </div>
+            <div class="basis-4/5 ml-72  pt-4" style="margin-top:72px">
+              ${surfacesTemplates}
+              <div class="text-center mt-2">
+                <a class="btn btn-accent" @click=${this._onAddPage}>Add Page</a>
+              </div>
             </div>
           </div>
+          <div class="${this.scene === 'Travel' ? 'block' : 'hidden'} "></div>
+          <div class="${this.scene === 'Edgeless' ? 'block' : 'hidden'} "></div>
         </div>
       </div>
       <div
