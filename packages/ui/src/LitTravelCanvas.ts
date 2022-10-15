@@ -1,14 +1,15 @@
 import { html } from 'lit';
 import type { TemplateResult } from 'lit';
-
 import { customElement, property, eventOptions } from 'lit/decorators.js';
 import { TwLitElement } from './common/TwLitElement';
 import { store } from './store';
 import type { Surface } from './surface';
 import { newSurface, newSurfaceHtml } from './surface';
+export * from './LitPager';
 
 const defaultStore = store.getStore();
 type SceneKeys = 'Pager' | 'Travel' | 'Edgeless' | undefined;
+
 @customElement('travel-canvas')
 export class TravelCanvas extends TwLitElement {
   // Declare reactive properties
@@ -31,12 +32,9 @@ export class TravelCanvas extends TwLitElement {
     newSurface('code'),
   ];
 
-  @property({ type: String, reflect: true })
-  activeSurfaceId?: string;
-
   constructor() {
     super();
-    this.activeSurfaceId = this.surfaces[0].id;
+
     this.scene = 'Pager';
     store.saveStore({
       travelTitle: this.travelTitle,
@@ -46,7 +44,6 @@ export class TravelCanvas extends TwLitElement {
   // Render the UI as a function of component state
   render(): TemplateResult {
     const surfacesTemplates = [];
-    const menuTemplates = [];
     for (let index = 0; index < this.surfaces.length; index++) {
       const i = this.surfaces[index];
       surfacesTemplates.push(html`<div
@@ -58,34 +55,7 @@ export class TravelCanvas extends TwLitElement {
         </div>
         ${newSurfaceHtml(i.type)}
       </div>`);
-
-      menuTemplates.push(html` <li
-        @click=${() => this._onClickMenuItem(i.id, index)}
-        class="${this.activeSurfaceId == i.id ? 'bg-primary text-white ' : ''}"
-      >
-        <a
-          >${i.title}
-          <svg
-            @click=${(e: Event) => {
-              this._onAddPage(e, index);
-            }}
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="{1.5}"
-            stroke="currentColor"
-            class="w-8 h-8"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 6v12m6-6H6"
-            />
-          </svg>
-        </a>
-      </li>`);
     }
-    // console.log(surfacesTemplates);
     return html`
       <div
         class="bg-base-200 flex-wrap items-center justify-center w-screen h-screen overflow-auto bg-top"
@@ -197,19 +167,13 @@ export class TravelCanvas extends TwLitElement {
         </div>
         <div class="flex flex-row ">
           <div class="${this.scene === 'Pager' ? 'block' : 'hidden'} ">
-            <div class="w-72 fixed " style="top:72px">
-              <ul
-                class="menu bg-base-100 w-auto p-2 mt-10 rounded-box overflow-y-auto"
-              >
-                ${menuTemplates}
-              </ul>
-            </div>
-            <div class="basis-4/5 ml-72 mt-16  pt-4">
-              ${surfacesTemplates}
-              <div class="text-center mt-2">
-                <a class="btn btn-accent" @click=${this._onAddPage}>Add Page</a>
-              </div>
-            </div>
+            <pager-menus
+              .activeSurfaceId=${this.surfaces[0].id}
+              .surfaces=${this.surfaces}
+              .canvasEl=${this.renderRoot}
+            ></pager-menus>
+
+            <div class="basis-4/5 ml-72 mt-16  pt-4">${surfacesTemplates}</div>
           </div>
           <div
             class="${this.scene === 'Travel'
@@ -250,29 +214,7 @@ export class TravelCanvas extends TwLitElement {
       </div>
     `;
   }
-  _onClickMenuItem(id: string, index: number) {
-    this.activeSurfaceId = id;
-    const eleId = `surface${id}`;
-    console.log(eleId);
-    let newTop = this.renderRoot
-      .querySelector('#' + eleId)
-      ?.getBoundingClientRect().y;
-    // debugger;
 
-    if (index === 0) {
-      newTop = 0;
-    } else {
-      newTop =
-        -72 +
-        (newTop || 0) +
-        (this.renderRoot.querySelector('#surfaceScrollContainer')?.scrollTop ||
-          0);
-    }
-
-    this.renderRoot
-      .querySelector('#surfaceScrollContainer')
-      ?.scrollTo({ top: newTop, behavior: 'smooth' });
-  }
   _onSwitchScene(newScene: SceneKeys) {
     this.scene = newScene;
     console.log(this.scene);
@@ -286,30 +228,7 @@ export class TravelCanvas extends TwLitElement {
       newSurface('counterdown'),
       newSurface('code'),
     ];
-    this.activeSurfaceId = this.surfaces[0].id;
-    store.saveStore({
-      travelTitle: this.travelTitle,
-      surfaces: this.surfaces,
-    });
-  }
-
-  @eventOptions({ capture: true })
-  _onAddPage(e: Event, index: number) {
-    // const array: Surface[] = this.surfaces;
-    const _newSurface = newSurface('article');
-    const newIndex = index + 1;
-    this.surfaces.splice(newIndex, 0, _newSurface);
-    this.surfaces = [...this.surfaces];
-
-    store.saveStore({
-      travelTitle: this.travelTitle,
-      surfaces: this.surfaces,
-    });
-    e.stopPropagation();
-
-    setTimeout(() => {
-      this._onClickMenuItem(_newSurface.id, newIndex);
-    });
+    store.saveStoreSurfaces(this.surfaces);
   }
 }
 

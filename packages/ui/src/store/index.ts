@@ -5,6 +5,11 @@ interface State {
 }
 const localStorage = window.localStorage;
 const store = {
+  saveStoreSurfaces: (surfaces: Surface[]) => {
+    const originStore = store.getStore();
+    originStore.surfaces = surfaces;
+    localStorage.setItem('travel_store', JSON.stringify(originStore));
+  },
   saveStore: (data: State) => {
     localStorage.setItem('travel_store', JSON.stringify(data));
   },
