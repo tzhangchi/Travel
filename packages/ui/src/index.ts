@@ -1,2 +1,1 @@
-
-export * from './travel-canvas';
+export * from './LitTravelCanvas';

@@ -3,35 +3,17 @@ import type { TemplateResult } from 'lit';
 
 import { customElement, property, eventOptions } from 'lit/decorators.js';
 import { TwLitElement } from './common/TwLitElement';
-
+import { uuid } from './util/util';
 import { store } from './store';
 import type { Surface } from './surface';
 
-
-
-const _uuid = (): string => Math.floor(Math.random() * 1000) + '';
-
-const _randomTitle = () =>
-  [
-    'Chapter1',
-    'Chapter2',
-    'Chapter3',
-    'Chapter4',
-    'Chapter5',
-    'Chapter6',
-    'Chapter7',
-    'Chapter8',
-    'Chapter9',
-    'Chapter10',
-  ][Math.floor(Math.random() * 10)];
-const _surfaceTitle = (_id?: string) =>
-  'S-' + (_id || _uuid()) + ' ' + _randomTitle();
+const _surfaceTitle = (_id?: string) => 'S-' + (_id || uuid());
 const _newSurface = function (
   newType = ['image', 'article', 'code', 'counterdown', 'stat', 'embed'][
     Math.floor(Math.random() * 5)
   ]
 ): Surface {
-  const id = _uuid();
+  const id = uuid();
   const title = _surfaceTitle(id);
   const type = newType;
   return {
