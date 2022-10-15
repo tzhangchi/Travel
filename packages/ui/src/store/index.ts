@@ -1,8 +1,4 @@
-interface Surface {
-  title: string;
-  id: string;
-  type: string | 'image' | 'article' | 'code' | 'counterdown' | 'stat';
-}
+import type { Surface } from './../surface';
 interface State {
   travelTitle: string | undefined;
   surfaces: Surface[];

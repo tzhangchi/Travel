@@ -5,18 +5,9 @@ import { customElement, property, eventOptions } from 'lit/decorators.js';
 import { TwLitElement } from './common/TwLitElement';
 
 import { store } from './store';
-interface Surface {
-  title: string;
-  id: string;
-  type:
-    | string
-    | 'image'
-    | 'article'
-    | 'code'
-    | 'counterdown'
-    | 'stat'
-    | 'embed';
-}
+import type { Surface } from './surface';
+
+
 
 const _uuid = (): string => Math.floor(Math.random() * 1000) + '';
 
@@ -305,7 +296,7 @@ export class TravelCanvas extends TwLitElement {
               <button
                 class="${this.scene === 'Travel'
                   ? 'btn-active'
-                  : ''} btn  btn-sm"
+                  : ''} btn btn-sm"
                 @click=${() => {
                   this._onSwitchScene('Travel');
                 }}
@@ -315,7 +306,7 @@ export class TravelCanvas extends TwLitElement {
               <button
                 class="${this.scene === 'Edgeless'
                   ? 'btn-active'
-                  : ''} btn  btn-sm"
+                  : ''} btn btn-sm"
                 @click=${() => {
                   this._onSwitchScene('Edgeless');
                 }}
@@ -398,15 +389,27 @@ export class TravelCanvas extends TwLitElement {
                 ${menuTemplates}
               </ul>
             </div>
-            <div class="basis-4/5 ml-72  pt-4" style="margin-top:72px">
+            <div class="basis-4/5 ml-72 mt-16  pt-4">
               ${surfacesTemplates}
               <div class="text-center mt-2">
                 <a class="btn btn-accent" @click=${this._onAddPage}>Add Page</a>
               </div>
             </div>
           </div>
-          <div class="${this.scene === 'Travel' ? 'block' : 'hidden'} "></div>
-          <div class="${this.scene === 'Edgeless' ? 'block' : 'hidden'} "></div>
+          <div
+            class="${this.scene === 'Travel'
+              ? 'block container mt-24 m-auto'
+              : 'hidden'} "
+          >
+            Travel
+          </div>
+          <div
+            class="${this.scene === 'Edgeless'
+              ? 'block container mt-24 m-auto'
+              : 'hidden'} "
+          >
+            Edgeless
+          </div>
         </div>
       </div>
       <div
