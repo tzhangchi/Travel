@@ -308,7 +308,7 @@ export class TravelCanvas extends TwLitElement {
     e.stopPropagation();
 
     setTimeout(() => {
-      this._onClickMenuItem(newSurface.id, newIndex);
+      this._onClickMenuItem(_newSurface.id, newIndex);
     });
   }
 }
