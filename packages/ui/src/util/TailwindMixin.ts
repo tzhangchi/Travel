@@ -13,6 +13,8 @@ export const TW = <T extends LitMixin>(superClass: T): T =>
   class extends superClass {
     connectedCallback() {
       super.connectedCallback();
-      adoptStyles(this.shadowRoot, [stylesheet]);
+      if (this.shadowRoot) {
+        adoptStyles(this.shadowRoot, [stylesheet]);
+      }
     }
   };

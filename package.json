@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "pnpm --filter @travel/app dev",
     "lint": "eslint ./ --max-warnings=0",
+    "build": "cd ./packages/app && npm run build",
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "format": "prettier --write packages tests"
