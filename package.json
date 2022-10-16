@@ -7,6 +7,7 @@
     "dev": "pnpm --filter @travel/app dev",
     "lint": "eslint ./ --max-warnings=0",
     "build": "cd ./packages/app && npm run build",
+    "build:github-pages": "cd ./packages/app && npm run build:github-pages",
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "format": "prettier --write packages tests"
