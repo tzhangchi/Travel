@@ -35,7 +35,9 @@ export class TravelCanvas extends TwLitElement {
   constructor() {
     super();
 
-    this.scene = 'Travel';
+    // this.scene = 'Travel';
+    this.scene = 'Pager';
+
     store.saveStore({
       travelTitle: this.travelTitle,
       surfaces: this.surfaces,
@@ -186,7 +188,7 @@ export class TravelCanvas extends TwLitElement {
               .canvasEl=${this.renderRoot}
             ></pager-menus>
 
-            <div class="basis-4/5 ml-72 mt-16  pt-4">${surfacesTemplates}</div>
+            <div class="basis-4/5 ml-72 mt-16  pb-96">${surfacesTemplates}</div>
           </div>
           <div
             class="${this.scene === 'Travel'

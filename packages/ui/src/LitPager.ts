@@ -38,20 +38,16 @@ export class PagerMenus extends TwLitElement {
   _onClickMenuItem(id: string, index: number) {
     this.activeSurfaceId = id;
     const eleId = `surface${id}`;
-    let newTop = this.canvasEl
-      .querySelector('#' + eleId)
-      ?.getBoundingClientRect().y;
-
+    let newTop =
+      this.canvasEl.querySelector('#' + eleId)?.getBoundingClientRect().y || 0;
+    const containerScrollTop =
+      this.canvasEl.querySelector('#surfaceScrollContainer')?.scrollTop || 0;
     if (index === 0) {
       newTop = 0;
     } else {
-      newTop =
-        -72 +
-        (newTop || 0) +
-        (this.canvasEl.querySelector('#surfaceScrollContainer')?.scrollTop ||
-          0);
+      newTop = -72 + newTop + containerScrollTop;
     }
-
+    // debugger;
     this.canvasEl
       .querySelector('#surfaceScrollContainer')
       ?.scrollTo({ top: newTop, behavior: 'smooth' });
