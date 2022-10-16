@@ -52,7 +52,7 @@ export class TravelCanvas extends TwLitElement {
       const i = this.surfaces[index];
       surfacesTemplates.push(html`<div
         id="surface${i.id}"
-        class="artboard artboard-horizontal bg-white rounded-box w-10/12 h-auto mt-10 m-auto "
+        class="artboard artboard-horizontal bg-white rounded-box w-10/12 h-auto m-auto mt-8"
       >
         <div class="navbar bg-base-100">
           <a class="btn btn-ghost normal-case text-xl">${i.title}</a>
@@ -188,15 +188,15 @@ export class TravelCanvas extends TwLitElement {
               .canvasEl=${this.renderRoot}
             ></pager-menus>
 
-            <div class="basis-4/5 ml-72 mt-16  pb-96">${surfacesTemplates}</div>
+            <div class="basis-4/5 ml-72 mt-28  pb-96">${surfacesTemplates}</div>
           </div>
           <div
             class="${this.scene === 'Travel'
-              ? 'block container mt-24 m-auto'
+              ? 'block container mt-28 m-auto'
               : 'hidden'} "
           >
             <div
-              class="mt-16 overflow-x-auto flex flex-row flex-nowrap"
+              class="overflow-x-auto flex flex-row flex-nowrap"
               style="width:${1024 * this.surfaces.length}px"
             >
               ${travelTemplates}
