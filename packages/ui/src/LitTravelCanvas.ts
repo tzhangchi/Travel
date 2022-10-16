@@ -1,6 +1,6 @@
 import { html } from 'lit';
 import type { TemplateResult } from 'lit';
-import { customElement, property, eventOptions } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import { TwLitElement } from './common/TwLitElement';
 import { store } from './store';
 import type { Surface } from './surface';
