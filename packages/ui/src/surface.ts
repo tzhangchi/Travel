@@ -175,7 +175,7 @@ const newSurfaceHtml = (type: string) => {
       </div>
     </div>`;
   } else if (type === 'embed') {
-    return html`<div class="embed">
+    return html`<div class="embed" style="width:768px;">
       <iframe
         src="http://affine.pro/"
         class="w-full h-96"
