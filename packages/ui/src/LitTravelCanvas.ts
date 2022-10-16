@@ -35,7 +35,7 @@ export class TravelCanvas extends TwLitElement {
   constructor() {
     super();
 
-    this.scene = 'Pager';
+    this.scene = 'Travel';
     store.saveStore({
       travelTitle: this.travelTitle,
       surfaces: this.surfaces,
@@ -44,6 +44,8 @@ export class TravelCanvas extends TwLitElement {
   // Render the UI as a function of component state
   render(): TemplateResult {
     const surfacesTemplates = [];
+    const travelTemplates = [];
+
     for (let index = 0; index < this.surfaces.length; index++) {
       const i = this.surfaces[index];
       surfacesTemplates.push(html`<div
@@ -55,6 +57,17 @@ export class TravelCanvas extends TwLitElement {
         </div>
         ${newSurfaceHtml(i.type)}
       </div>`);
+      travelTemplates.push(html`<div
+        style="width:1024px;height:768px"
+        class="flex bg-white rounded-md shadow mr-10"
+      >
+        <div class="m-auto">
+          <div class="navbar bg-base-100">
+            <a class="btn btn-ghost normal-case text-xl">${i.title}</a>
+          </div>
+          ${newSurfaceHtml(i.type)}
+        </div>
+      </div> `);
     }
     return html`
       <div
@@ -180,7 +193,12 @@ export class TravelCanvas extends TwLitElement {
               ? 'block container mt-24 m-auto'
               : 'hidden'} "
           >
-            Travel
+            <div
+              class="mt-16 overflow-x-auto flex flex-row flex-nowrap"
+              style="width:${1024 * this.surfaces.length}px"
+            >
+              ${travelTemplates}
+            </div>
           </div>
           <div
             class="${this.scene === 'Edgeless'
