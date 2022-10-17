@@ -12,6 +12,9 @@ export class PagerMenus extends TwLitElement {
   canvasEl!: HTMLElement;
 
   @property()
+  onSurfacesChange: ((data: Surface[]) => void) | undefined;
+
+  @property()
   surfaces: Surface[] = [];
 
   @property()
@@ -26,8 +29,8 @@ export class PagerMenus extends TwLitElement {
     const newIndex = index + 1;
     this.surfaces.splice(newIndex, 0, _newSurface);
     this.surfaces = [...this.surfaces];
+    this.onSurfacesChange && this.onSurfacesChange(this.surfaces);
 
-    store.saveStoreSurfaces(this.surfaces);
     e.stopPropagation();
 
     setTimeout(() => {

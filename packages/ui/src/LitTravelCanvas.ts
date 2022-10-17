@@ -186,6 +186,10 @@ export class TravelCanvas extends TwLitElement {
               .activeSurfaceId=${this.surfaces[0].id}
               .surfaces=${this.surfaces}
               .canvasEl=${this.renderRoot}
+              .onSurfacesChange=${(surfaces: Surface[]) => {
+                this.surfaces = surfaces;
+                store.saveStoreSurfaces(surfaces);
+              }}
             ></pager-menus>
 
             <div class="basis-4/5 ml-72 mt-28  pb-96">${surfacesTemplates}</div>
