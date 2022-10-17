@@ -88,8 +88,8 @@ export class PagerMenus extends TwLitElement {
         </div>
       </li>`);
     }
-    return html`<div class="w-72 fixed" style="top:72px">
-      <ul class="menu bg-base-100 w-auto p-2 mt-10 rounded-box overflow-y-auto">
+    return html`<div class="w-72 fixed overflow-y-auto h-5/6" style="top:72px">
+      <ul class="menu bg-base-100 w-auto p-2 mt-10 rounded-box ">
         ${menuTemplates}
       </ul>
     </div>`;
