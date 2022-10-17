@@ -64,26 +64,28 @@ export class PagerMenus extends TwLitElement {
         @click=${() => this._onClickMenuItem(i.id, index)}
         class="${this.activeSurfaceId == i.id ? 'bg-primary text-white ' : ''}"
       >
-        <a
-          >${i.title}
-          <svg
-            @click=${(e: Event) => {
-              this._onAddPage(e, index);
-            }}
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="{1.5}"
-            stroke="currentColor"
-            class="w-8 h-8"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 6v12m6-6H6"
-            />
-          </svg>
-        </a>
+        <div class="flex-row ">
+          <div class="w-8/12 ">${i.title}</div>
+          <div>
+            <svg
+              @click=${(e: Event) => {
+                this._onAddPage(e, index);
+              }}
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="{1.5}"
+              stroke="currentColor"
+              class="w-8 h-8"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 6v12m6-6H6"
+              />
+            </svg>
+          </div>
+        </div>
       </li>`);
     }
     return html`<div class="w-72 fixed" style="top:72px">
