@@ -1,3 +1,3 @@
-const uuid = (): string => Math.floor(Math.random() * 1000) + '';
+const uuid = (): string => Math.floor(Math.random() * 10000) + '';
 
 export { uuid };
