@@ -1,4 +1,4 @@
-import { html, css, adoptStyles } from 'lit';
+import { html } from 'lit';
 import type { TemplateResult } from 'lit';
 import { customElement, property, eventOptions } from 'lit/decorators.js';
 import { TwLitElement } from './common/TwLitElement';
@@ -23,7 +23,7 @@ export class PagerMenus extends TwLitElement {
     super();
   }
 
-  _onAddPage(e: Event, index: number, type: string = 'article') {
+  _onAddPage(e: Event, index: number, type = 'article') {
     const _newSurface = newSurface(type);
     const newIndex = index + 1;
     this.surfaces.splice(newIndex, 0, _newSurface);

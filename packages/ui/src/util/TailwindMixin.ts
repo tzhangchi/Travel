@@ -11,7 +11,6 @@ const stylesheet = unsafeCSS(style);
 
 export const TW = <T extends LitMixin>(superClass: T): T =>
   class extends superClass {
-    styles: any;
     connectedCallback() {
       super.connectedCallback();
       if (this.shadowRoot) {
