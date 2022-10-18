@@ -211,7 +211,23 @@ export class TravelCanvas extends TwLitElement {
               ? 'block container mt-24 m-auto'
               : 'hidden'} "
           >
-            Edgeless
+            <div class="stack w-full">
+              <div
+                class="text-center border border-base-content card   bg-base-100"
+              >
+                <div class="card-body">A</div>
+              </div>
+              <div
+                class="text-center border border-base-content card   bg-base-100"
+              >
+                <div class="card-body">B</div>
+              </div>
+              <div
+                class="text-center border border-base-content card   bg-base-100"
+              >
+                <div class="card-body">C</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
