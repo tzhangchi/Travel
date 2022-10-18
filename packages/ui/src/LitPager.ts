@@ -1,8 +1,7 @@
-import { html } from 'lit';
+import { html, css, adoptStyles } from 'lit';
 import type { TemplateResult } from 'lit';
 import { customElement, property, eventOptions } from 'lit/decorators.js';
 import { TwLitElement } from './common/TwLitElement';
-import { store } from './store';
 import type { Surface } from './surface';
 import { newSurface } from './surface';
 
@@ -24,8 +23,8 @@ export class PagerMenus extends TwLitElement {
     super();
   }
 
-  _onAddPage(e: Event, index: number) {
-    const _newSurface = newSurface('article');
+  _onAddPage(e: Event, index: number, type: string = 'article') {
+    const _newSurface = newSurface(type);
     const newIndex = index + 1;
     this.surfaces.splice(newIndex, 0, _newSurface);
     this.surfaces = [...this.surfaces];
@@ -64,9 +63,9 @@ export class PagerMenus extends TwLitElement {
         @click=${() => this._onClickMenuItem(i.id, index)}
         class="${this.activeSurfaceId == i.id ? 'bg-primary text-white ' : ''}"
       >
-        <div class="flex-row ">
+        <div class="flex-row menu-item">
           <div class="w-8/12 ">${i.title}</div>
-          <div>
+          <div class="operate">
             <svg
               @click=${(e: Event) => {
                 this._onAddPage(e, index);
@@ -76,7 +75,7 @@ export class PagerMenus extends TwLitElement {
               viewBox="0 0 24 24"
               strokeWidth="{1.5}"
               stroke="currentColor"
-              class="w-8 h-8"
+              class="w-8 h-8 add"
             >
               <path
                 strokeLinecap="round"
@@ -84,6 +83,24 @@ export class PagerMenus extends TwLitElement {
                 d="M12 6v12m6-6H6"
               />
             </svg>
+            <div class="operate-more">
+              <button
+                class="btn btn-sm"
+                @click=${(e: Event) => {
+                  this._onAddPage(e, index, 'article');
+                }}
+              >
+                article
+              </button>
+              <button
+                class="btn btn-sm"
+                @click=${(e: Event) => {
+                  this._onAddPage(e, index, 'counterdown');
+                }}
+              >
+                counterdown
+              </button>
+            </div>
           </div>
         </div>
       </li>`);
