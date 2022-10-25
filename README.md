@@ -34,11 +34,12 @@ In headed mode, `await page.pause()` can be used in test cases to suspend the te
 
 We would also like to give thanks to open-source projects that make Travel possible:
 
-- [yjs
-  ](https://github.com/yjs/yjs) & [Yrs](https://github.com/y-crdt/y-crdt) -- Fundamental support of CRDTs for our implementation on state management and data sync.
 - [AFFiNE](https://github.com/toeverything/AFFiNE) -- a next-gen knowledge base that brings planning, sorting and creating all together. Privacy first, open-source, customizable and ready to use
+- [BlockSuite](https://github.com/toeverything/blocksuite) -- BlockSuite is a collaborative editing framework designed to reliably reconcile any Web content.
 - [tailwindcss](https://tailwindcss.com/) -- A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup
 - [daisyui](https://daisyui.com/docs/install/) - The most popular, free and open-source
+- [yjs
+  ](https://github.com/yjs/yjs) & [Yrs](https://github.com/y-crdt/y-crdt) -- Fundamental support of CRDTs for our implementation on state management and data sync.
   Tailwind CSS component library
 - [React](https://github.com/facebook/react) -- View layer support and web GUI framework.
 - [Lit](https://lit.dev/) -- Simple. Fast. Web Components..
